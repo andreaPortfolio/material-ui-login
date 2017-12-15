@@ -4,6 +4,9 @@ import { withStyles } from 'material-ui/styles';
 import PersonIcon from 'material-ui-icons/Person';
 import Card from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
+import PropTypes from 'prop-types';
+import {push} from 'react-router-redux';
+import {connect} from 'react-redux';
 
 const styles = {
   flex: {
@@ -43,7 +46,7 @@ class Home extends Component {
   }
 
   handlerClick = () => {
-    console.log('test');
+      this.props.dispatch(push("/users"));
   };
   render() {
     const { classes } = this.props;
@@ -75,4 +78,15 @@ class Home extends Component {
   }
 }
 
-export default withStyles(styles)(Home);
+
+
+Home.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+
+function mapStateToProps(state) {
+    return {authenticated: state.reducers.auth.authenticated};
+}
+
+export default connect(mapStateToProps)(withStyles(styles)(Home));
