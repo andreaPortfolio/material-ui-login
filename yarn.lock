@@ -2,33 +2,33 @@
 # yarn lockfile v1
 
 
-"@devexpress/dx-core@1.0.0-beta.1", "@devexpress/dx-core@^1.0.0-beta.1":
-  version "1.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@devexpress/dx-core/-/dx-core-1.0.0-beta.1.tgz#63383ec2bd3903d9a163c1316706cde32227d6b4"
+"@devexpress/dx-core@1.0.0-beta.2", "@devexpress/dx-core@^1.0.0-beta.1":
+  version "1.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@devexpress/dx-core/-/dx-core-1.0.0-beta.2.tgz#cda08172e60a043e42b6dbda79811059f3c2447e"
 
-"@devexpress/dx-grid-core@1.0.0-beta.1", "@devexpress/dx-grid-core@^1.0.0-beta.1":
-  version "1.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@devexpress/dx-grid-core/-/dx-grid-core-1.0.0-beta.1.tgz#48f76255c7192e7727f2c9b97efb2bf70774471d"
+"@devexpress/dx-grid-core@1.0.0-beta.2", "@devexpress/dx-grid-core@^1.0.0-beta.1":
+  version "1.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@devexpress/dx-grid-core/-/dx-grid-core-1.0.0-beta.2.tgz#768083483c1c1005112ff012367d1e81f190ee94"
 
 "@devexpress/dx-react-core@^1.0.0-beta.1":
-  version "1.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@devexpress/dx-react-core/-/dx-react-core-1.0.0-beta.1.tgz#7f44d4162d429aa55fca9c18407561841dac92a4"
+  version "1.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@devexpress/dx-react-core/-/dx-react-core-1.0.0-beta.2.tgz#fb06dcd9d72228ff3ca73915e486c5d8140e6243"
   dependencies:
-    "@devexpress/dx-core" "1.0.0-beta.1"
+    "@devexpress/dx-core" "1.0.0-beta.2"
     prop-types "^15.6.0"
 
 "@devexpress/dx-react-grid-material-ui@^1.0.0-beta.1":
-  version "1.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@devexpress/dx-react-grid-material-ui/-/dx-react-grid-material-ui-1.0.0-beta.1.tgz#437b63a3ccd1ab5cb3f4fa82d0608d754afbef8a"
+  version "1.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@devexpress/dx-react-grid-material-ui/-/dx-react-grid-material-ui-1.0.0-beta.2.tgz#6ddcdefd2bfa24edf002fa45e770bf4db407efbc"
   dependencies:
     classnames "^2.2.5"
     prop-types "^15.6.0"
 
 "@devexpress/dx-react-grid@^1.0.0-beta.1":
-  version "1.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@devexpress/dx-react-grid/-/dx-react-grid-1.0.0-beta.1.tgz#8e249e5cd7ad2c0ed9a2d0782c70f9d26e1ca44f"
+  version "1.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@devexpress/dx-react-grid/-/dx-react-grid-1.0.0-beta.2.tgz#68698853f9ebda39d3aa167ee730a3906ecebff9"
   dependencies:
-    "@devexpress/dx-grid-core" "1.0.0-beta.1"
+    "@devexpress/dx-grid-core" "1.0.0-beta.2"
     prop-types "^15.6.0"
 
 abab@^1.0.3:
@@ -92,8 +92,8 @@ ajv@^4.9.1:
     json-stable-stringify "^1.0.1"
 
 ajv@^5.0.0, ajv@^5.1.0, ajv@^5.1.5, ajv@^5.2.0, ajv@^5.2.3:
-  version "5.5.1"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.1.tgz#b38bb8876d9e86bee994956a04e721e88b248eb2"
+  version "5.5.2"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.2.tgz#73b5eeca3fab653e3d3f9422b341ad42205dc965"
   dependencies:
     co "^4.6.0"
     fast-deep-equal "^1.0.0"
@@ -1279,12 +1279,12 @@ caniuse-api@^1.5.2:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30000782"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000782.tgz#d8815bce1578c350aced1132507301205e0fab53"
+  version "1.0.30000783"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000783.tgz#16b30d47266a4f515cc69ae0316b670c9603cdbe"
 
 caniuse-lite@^1.0.30000748, caniuse-lite@^1.0.30000780:
-  version "1.0.30000782"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000782.tgz#5b82b8c385f25348745c471ca51320afb1b7f254"
+  version "1.0.30000783"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000783.tgz#9b5499fb1b503d2345d12aa6b8612852f4276ffd"
 
 capture-stack-trace@^1.0.0:
   version "1.0.0"
@@ -2098,8 +2098,8 @@ entities@~1.1.1:
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
 errno@^0.1.3, errno@^0.1.4:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/errno/-/errno-0.1.5.tgz#a563781a6052bc2c9ccd89e8cef0eb9506e0c321"
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/errno/-/errno-0.1.6.tgz#c386ce8a6283f14fc09563b71560908c9bf53026"
   dependencies:
     prr "~1.0.1"
 
@@ -3406,12 +3406,6 @@ is-obj@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-obj/-/is-obj-1.0.1.tgz#3e4729ac1f5fde025cd7d83a896dab9f4f67db0f"
 
-is-observable@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/is-observable/-/is-observable-0.2.0.tgz#b361311d83c6e5d726cabf5e250b0237106f5ae2"
-  dependencies:
-    symbol-observable "^0.2.2"
-
 is-path-cwd@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-path-cwd/-/is-path-cwd-1.0.0.tgz#d225ec23132e89edd38fda767472e62e65f1106d"
@@ -3461,10 +3455,8 @@ is-regex@^1.0.4:
     has "^1.0.1"
 
 is-resolvable@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/is-resolvable/-/is-resolvable-1.0.0.tgz#8df57c61ea2e3c501408d100fb013cf8d6e0cc62"
-  dependencies:
-    tryit "^1.0.1"
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/is-resolvable/-/is-resolvable-1.0.1.tgz#acca1cd36dbe44b974b924321555a70ba03b1cf4"
 
 is-retry-allowed@^1.0.0:
   version "1.1.0"
@@ -3935,22 +3927,17 @@ jss-compose@^5.0.0:
     warning "^3.0.0"
 
 jss-default-unit@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/jss-default-unit/-/jss-default-unit-8.0.0.tgz#a308ead4f587ebe17cc845f9870867400de90910"
-  dependencies:
-    is-observable "^0.2.0"
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/jss-default-unit/-/jss-default-unit-8.0.2.tgz#cc1e889bae4c0b9419327b314ab1c8e2826890e6"
 
 jss-expand@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/jss-expand/-/jss-expand-5.0.0.tgz#8eadb782f29ec5f1d285451dd38052d5ac51644a"
-  dependencies:
-    is-observable "^0.2.0"
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/jss-expand/-/jss-expand-5.1.0.tgz#b1ad74ec18631f34f65a2124fcfceb6400610e3d"
 
 jss-extend@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/jss-extend/-/jss-extend-6.0.1.tgz#e53430bc92a42e50d036883ccfecfbc4e1199147"
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/jss-extend/-/jss-extend-6.1.0.tgz#85f3d39944018e8f44b322c14fa316068aa7bb0b"
   dependencies:
-    is-observable "^0.2.0"
     warning "^3.0.0"
 
 jss-global@^3.0.0:
@@ -3995,11 +3982,11 @@ jss-vendor-prefixer@^7.0.0:
     css-vendor "^0.3.8"
 
 jss@^9.3.2, jss@^9.3.3:
-  version "9.3.3"
-  resolved "https://registry.yarnpkg.com/jss/-/jss-9.3.3.tgz#d535ad8c64f6df9aeadb0219d5153c47493ff1c0"
+  version "9.4.0"
+  resolved "https://registry.yarnpkg.com/jss/-/jss-9.4.0.tgz#fbfd1a63556c5afd5bfcffd98df3c50eb2614ed3"
   dependencies:
     is-in-browser "^1.1.3"
-    symbol-observable "^1.0.4"
+    symbol-observable "^1.1.0"
     warning "^3.0.0"
 
 jsx-ast-utils@^1.4.0:
@@ -4235,8 +4222,8 @@ material-ui-icons@^1.0.0-beta.17:
     recompose "^0.26.0"
 
 material-ui@^1.0.0-beta.22:
-  version "1.0.0-beta.23"
-  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.23.tgz#f3d49359c13b57f893e768de62b81f5e8ad7faa5"
+  version "1.0.0-beta.24"
+  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.24.tgz#a51452d0486f88fd7f13ebed869793f298aa800c"
   dependencies:
     babel-runtime "^6.26.0"
     brcast "^3.0.1"
@@ -4251,7 +4238,6 @@ material-ui@^1.0.0-beta.22:
     normalize-scroll-left "^0.1.2"
     prop-types "^15.6.0"
     react-event-listener "^0.5.1"
-    react-flow-types "^0.2.0-beta.6"
     react-jss "^8.1.0"
     react-popper "^0.7.4"
     react-scrollbar-size "^2.0.2"
@@ -5422,13 +5408,9 @@ react-event-listener@^0.5.0, react-event-listener@^0.5.1:
     prop-types "^15.6.0"
     warning "^3.0.0"
 
-react-flow-types@^0.2.0-beta.6:
-  version "0.2.0-beta.6"
-  resolved "https://registry.yarnpkg.com/react-flow-types/-/react-flow-types-0.2.0-beta.6.tgz#bf49c8b7864fcd0951b03286c63a80d66ce9fae4"
-
 react-form@^2.12.1:
-  version "2.14.1"
-  resolved "https://registry.yarnpkg.com/react-form/-/react-form-2.14.1.tgz#2eb5299c929d2446f185f79a7d0b20f34c33c2ad"
+  version "2.14.4"
+  resolved "https://registry.yarnpkg.com/react-form/-/react-form-2.14.4.tgz#5076c5fa3e83c2f13533dd97d4f481db5ebb0925"
   dependencies:
     babel-runtime "^6.26.0"
     circular-json "^0.4.0"
@@ -5479,8 +5461,8 @@ react-router-dom@^4.2.2:
     warning "^3.0.0"
 
 react-router-redux@^5.0.0-alpha.8:
-  version "5.0.0-alpha.8"
-  resolved "https://registry.yarnpkg.com/react-router-redux/-/react-router-redux-5.0.0-alpha.8.tgz#5242c705730b2ac862aff7a8e90f870d0cf45e12"
+  version "5.0.0-alpha.9"
+  resolved "https://registry.yarnpkg.com/react-router-redux/-/react-router-redux-5.0.0-alpha.9.tgz#825431516e0e6f1fd93b8807f6bd595e23ec3d10"
   dependencies:
     history "^4.7.2"
     prop-types "^15.6.0"
@@ -6394,11 +6376,7 @@ sw-toolbox@^3.4.0:
     path-to-regexp "^1.0.1"
     serviceworker-cache-polyfill "^4.0.0"
 
-symbol-observable@^0.2.2:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-0.2.4.tgz#95a83db26186d6af7e7a18dbd9760a2f86d08f40"
-
-symbol-observable@^1.0.3, symbol-observable@^1.0.4:
+symbol-observable@^1.0.3, symbol-observable@^1.0.4, symbol-observable@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.1.0.tgz#5c68fd8d54115d9dfb72a84720549222e8db9b32"
 
@@ -6530,10 +6508,6 @@ trim-newlines@^1.0.0:
 trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
-
-tryit@^1.0.1:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/tryit/-/tryit-1.0.3.tgz#393be730a9446fd1ead6da59a014308f36c289cb"
 
 tty-browserify@0.0.0:
   version "0.0.0"

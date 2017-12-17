@@ -103,7 +103,7 @@ class UserButton extends Component {
                     open={this.state.open}
                     anchorEl={this.state.anchorEl}
                     anchorPosition={{top: 200, left: 400}}
-                    onRequestClose={this.handleRequestClose}
+                    onClose={this.handleRequestClose}
                     anchorOrigin={{
                         vertical: 'bottom',
                         horizontal: 'center',

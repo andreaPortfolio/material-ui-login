@@ -20,27 +20,16 @@ import {withStyles} from 'material-ui/styles';
 
 const styles = theme => ({
     root: {
-        paddingRight: 2,
+        width: '100%',
+        marginTop: theme.spacing.unit * 3,
+        overflowX: 'auto',
     },
-    highlight:
-        theme.palette.type === 'light'
-            ? {
-                color: theme.palette.secondary.A700,
-                backgroundColor: theme.palette.secondary.A100,
-            }
-            : {
-                color: theme.palette.secondary.A100,
-                backgroundColor: theme.palette.secondary.A700,
-            },
-    spacer: {
-        flex: '1 1 100%',
+    table: {
+        minWidth: 800,
     },
-    actions: {
-        color: theme.palette.text.secondary,
+    tableWrapper: {
+        overflowX: 'auto',
     },
-    title: {
-        flex: '0 0 auto',
-    }
 });
 
 const AddButton = ({onExecute}) => (
@@ -200,12 +189,14 @@ class Users extends React.PureComponent {
             key={data._id}
         >
             <TableCell>
+                <div style={{display: 'flex'}}>
                 <EditButton onExecute={() => {
                     this.handleClickButtons('edit', data)
                 }}/>
                 <DeleteButton onExecute={() => {
                     this.handleClickButtons('delete', data)
                 }}/>
+                </div>
             </TableCell>
             <TableCell>{data.firstName}</TableCell>
             <TableCell>{data.lastName}</TableCell>
