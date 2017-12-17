@@ -11,6 +11,7 @@ import Button from 'material-ui/Button';
 import AccountCircle from 'material-ui-icons/AccountCircle';
 import Visibility from 'material-ui-icons/Visibility';
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
+import EmailIcon from 'material-ui-icons/Email';
 import IconButton from 'material-ui/IconButton';
 
 
@@ -114,6 +115,14 @@ class SignIn extends React.Component {
                                     className={classes.input}
                                     value={this.state.username}
                                     onChange={this.handleChangeEmail}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                            >
+                                               <EmailIcon />
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
                                 />
                                 <FormHelperText error={true}>{this.state.emailError}</FormHelperText>
                             </FormControl>
