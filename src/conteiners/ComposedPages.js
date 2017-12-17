@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 //import App  from './App';
-import App  from '../components/AppBar/AppBar.js';
+import App  from './Layout/AppBar.js';
 import HomeComponent  from '../components/Home';
-import UsersComponent  from '../components/Users';
-import { Switch, Route } from 'react-router-dom'
+import UsersComponent  from './Users/Users';
+
 
 const styles = {
  

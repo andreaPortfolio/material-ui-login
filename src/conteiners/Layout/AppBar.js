@@ -4,19 +4,12 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
-import Button from 'material-ui/Button';
-import Avatar from 'material-ui/Avatar';
-import AccountCircle from 'material-ui-icons/AccountCircle';
-import Popover from 'material-ui/Popover';
-import Divider from 'material-ui/Divider';
-import SignOut from '../../conteiners/auth/SignOut';
-import { findDOMNode } from 'react-dom';
 import { withStyles } from 'material-ui/styles';
-import * as actions from '../../actions';
+import * as actions from '../../actions/index';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import UserButton from './UserButton'
-import SideBar  from '../SideBar.js';
+import SideBar  from './SideBar.js';
 
 
 

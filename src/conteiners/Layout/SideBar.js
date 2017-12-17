@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
 
 import { withStyles } from 'material-ui/styles';
-import * as actions from '../actions';
+import * as actions from '../../actions/index';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+
 import Drawer from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import { MenuItem } from 'material-ui/Menu';
-import Typography from 'material-ui/Typography';
-import TextField from 'material-ui/TextField';
+
 import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
+
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
-import ChevronRightIcon from 'material-ui-icons/ChevronRight';
+
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import InboxIcon from 'material-ui-icons/Inbox';
 import DashboardIcon from 'material-ui-icons/Dashboard';

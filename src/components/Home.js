@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import { withStyles } from 'material-ui/styles';
 import PersonIcon from 'material-ui-icons/Person';
-import Card from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 import PropTypes from 'prop-types';
 import {push} from 'react-router-redux';
