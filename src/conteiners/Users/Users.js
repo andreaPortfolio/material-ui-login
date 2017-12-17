@@ -270,6 +270,8 @@ class Users extends React.PureComponent {
             currentUserData
         } = this.state;
 
+
+
         return (<div>
                 <Paper className={classes.root}>
                     <div className={classes.tableWrapper}>

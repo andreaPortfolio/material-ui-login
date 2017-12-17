@@ -3,7 +3,7 @@ import React from 'react';
 import App from './Layout/AppBar.js';
 import HomeComponent from '../components/Home';
 import UsersComponent from './Users/Users';
-import { Broadcrumbs } from '../components/Breadcrumbs'
+import Broadcrumbs from '../components/Breadcrumbs'
 
 
 const styles = {
