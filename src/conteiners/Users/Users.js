@@ -7,39 +7,15 @@ import {connect} from 'react-redux';
 import UserForm from './UserForm';
 
 
-import Table, {
-    TableBody,
-    TableCell,
-    TableFooter,
-    TableHead,
-    TablePagination,
-    TableRow,
-    TableSortLabel,
-} from 'material-ui/Table';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
+import Table, {TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow,} from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
-import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
-import Tooltip from 'material-ui/Tooltip';
-import FilterListIcon from 'material-ui-icons/FilterList';
 
-import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-} from 'material-ui';
+import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,} from 'material-ui';
 
 import DeleteIcon from 'material-ui-icons/Delete';
 import EditIcon from 'material-ui-icons/Edit';
-import SaveIcon from 'material-ui-icons/Save';
-import CancelIcon from 'material-ui-icons/Cancel';
-import { withStyles } from 'material-ui/styles';
-
-
+import {withStyles} from 'material-ui/styles';
 
 
 const styles = theme => ({
@@ -67,44 +43,38 @@ const styles = theme => ({
     }
 });
 
-const AddButton = ({ onExecute }) => (
+const AddButton = ({onExecute}) => (
 
-        <Button
-            color="primary"
-            onClick={onExecute}
-            title="Create new row"
-        >
-            New
-        </Button>
+    <Button
+        color="primary"
+        onClick={onExecute}
+        title="Create new row"
+    >
+        New
+    </Button>
 
 );
 AddButton.propTypes = {
     onExecute: PropTypes.func.isRequired,
 };
 
-const EditButton = ({ onExecute }) => (
+const EditButton = ({onExecute}) => (
     <IconButton onClick={onExecute} title="Edit row">
-        <EditIcon />
+        <EditIcon/>
     </IconButton>
 );
 EditButton.propTypes = {
     onExecute: PropTypes.func.isRequired,
 };
 
-const DeleteButton = ({ onExecute }) => (
+const DeleteButton = ({onExecute}) => (
     <IconButton onClick={onExecute} title="Delete row">
-        <DeleteIcon />
+        <DeleteIcon/>
     </IconButton>
 );
 DeleteButton.propTypes = {
     onExecute: PropTypes.func.isRequired,
 };
-
-
-
-
-
-
 
 
 class Users extends React.PureComponent {
@@ -127,7 +97,7 @@ class Users extends React.PureComponent {
             changedRows: {},
             currentPage: 0,
             deletingRows: [],
-            currentUserData: {_id:"","firstName": '', "lastName": '', "email": '', 'password':''},
+            currentUserData: {_id: "", "firstName": '', "lastName": '', "email": '', 'password': ''},
             pageSize: 0,
             allowedPageSizes: [5, 10, 15],
             openDeleteDialog: false,
@@ -138,27 +108,24 @@ class Users extends React.PureComponent {
     }
 
 
-
-
     componentDidMount() {
 
         this.getUsers();
 
 
-
     }
 
-    getUsers =() =>{
+    getUsers = () => {
 
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
 
-        axios.get(`http://localhost:8000/user`).then(response =>{
+        axios.get(`http://localhost:8000/user`).then(response => {
             console.log('response', response);
             const users = response.data.docs;
             const pages = response.data.pages;
             console.log(pages)
             this.setState({users})
-        }).catch((error ) => {
+        }).catch((error) => {
 
 
             if (error.response && error.response.status === 401) {
@@ -168,7 +135,7 @@ class Users extends React.PureComponent {
         });
     };
 
-    deleteUser =() =>{
+    deleteUser = () => {
 
         const {currentUserData} = this.state;
 
@@ -176,11 +143,11 @@ class Users extends React.PureComponent {
 
         axios.delete(`http://localhost:8000/user/${currentUserData._id}`, {
             "hardDelete": true
-        }).then(response =>{
+        }).then(response => {
             console.log('response', response);
             this.cancelDelete();
             this.getUsers();
-        }).catch((error ) => {
+        }).catch((error) => {
 
 
             if (error.response && error.response.status === 401) {
@@ -190,45 +157,57 @@ class Users extends React.PureComponent {
         });
     };
 
-    handleClickButtons = (type, data)=>{
+    handleClickButtons = (type, data) => {
 
-        if(type === 'delete'){
+        if (type === 'delete') {
             this.setState({openDeleteDialog: true, currentUserData: data});
         }
-        if(type === 'edit'){
+        if (type === 'edit') {
             this.setState({openEditDialog: true, currentUserData: data});
         }
-        if(type === 'new'){
-            this.setState({openEditDialog: true, currentUserData: {_id:"","firstName": '', "lastName": '', "email": '', 'password':''}});
+        if (type === 'new') {
+            this.setState({
+                openEditDialog: true,
+                currentUserData: {_id: "", "firstName": '', "lastName": '', "email": '', 'password': ''}
+            });
         }
     };
 
     cancelDelete = () => {
 
-        this.setState({openDeleteDialog: false, currentUserData: {_id:"","firstName": '', "lastName": '', "email": '', 'password':''}});
+        this.setState({
+            openDeleteDialog: false,
+            currentUserData: {_id: "", "firstName": '', "lastName": '', "email": '', 'password': ''}
+        });
 
     };
 
     cancelEdit = () => {
 
-        this.setState({openEditDialog: false, currentUserData: {_id:"","firstName": '', "lastName": '', "email": '', 'password':''}});
+        this.setState({
+            openEditDialog: false,
+            currentUserData: {_id: "", "firstName": '', "lastName": '', "email": '', 'password': ''}
+        });
 
     };
 
 
-
-    renderRowTable = (data) =>{
+    renderRowTable = (data) => {
 
         const id = data._id;
-        return(<TableRow
+        return (<TableRow
             tabIndex={-1}
             key={data._id}
         >
             <TableCell>
-                <EditButton onExecute={()=> {this.handleClickButtons('edit', data)}}/>
-                <DeleteButton onExecute={()=> { this.handleClickButtons('delete', data)}}/>
+                <EditButton onExecute={() => {
+                    this.handleClickButtons('edit', data)
+                }}/>
+                <DeleteButton onExecute={() => {
+                    this.handleClickButtons('delete', data)
+                }}/>
             </TableCell>
-            <TableCell >{data.firstName}</TableCell>
+            <TableCell>{data.firstName}</TableCell>
             <TableCell>{data.lastName}</TableCell>
             <TableCell>{data.email}</TableCell>
             <TableCell></TableCell>
@@ -236,32 +215,32 @@ class Users extends React.PureComponent {
         </TableRow>)
     };
 
-    renderRowHeader = (data, index) =>{
-        
-        return(<TableCell key={index+'-headerRow'}>{data.name}</TableCell>)
+    renderRowHeader = (data, index) => {
+
+        return (<TableCell key={index + '-headerRow'}>{data.name}</TableCell>)
     };
 
     handleChangePage = (event, page) => {
-        this.setState({ page });
+        this.setState({page});
     };
 
     handleChangeRowsPerPage = event => {
-        this.setState({ rowsPerPage: event.target.value });
+        this.setState({rowsPerPage: event.target.value});
     };
 
 
-    handleChangeUserForm = (event, type) =>{
+    handleChangeUserForm = (event, type) => {
         const currentUserData = this.state;
 
-        if(type === 'firstName'){
+        if (type === 'firstName') {
             currentUserData.firstName = event.target.value;
 
             //this.setState({ currentUserData: { ...this.state.currentUserData } });
         }
-        if(type === 'lastName'){
+        if (type === 'lastName') {
             currentUserData.lastName = event.target.value;
         }
-        if(type === 'email'){
+        if (type === 'email') {
             currentUserData.email = event.target.value;
         }
 
@@ -298,7 +277,9 @@ class Users extends React.PureComponent {
 
                             <TableHead>
                                 <TableRow>
-                                    <TableCell><AddButton onExecute={()=> { this.handleClickButtons('new')}}/></TableCell>
+                                    <TableCell><AddButton onExecute={() => {
+                                        this.handleClickButtons('new')
+                                    }}/></TableCell>
                                     {columns.map(this.renderRowHeader)}
                                 </TableRow>
                             </TableHead>
@@ -325,7 +306,7 @@ class Users extends React.PureComponent {
                 <Dialog
                     open={openDeleteDialog}
                     onRequestClose={this.cancelDelete}
-                    classes={{ paper: classes.dialog }}
+                    classes={{paper: classes.dialog}}
                 >
                     <DialogTitle>Delete User</DialogTitle>
                     <DialogContent>
@@ -341,12 +322,11 @@ class Users extends React.PureComponent {
                         <Button onClick={this.deleteUser} color="accent">Delete</Button>
                     </DialogActions>
                 </Dialog>
-            {openEditDialog && <UserForm {...this.state} cancelEdit={this.cancelEdit} getUsers={this.getUsers}/>}
+                {openEditDialog && <UserForm {...this.state} cancelEdit={this.cancelEdit} getUsers={this.getUsers}/>}
             </div>
         );
     }
 }
-
 
 
 Users.propTypes = {

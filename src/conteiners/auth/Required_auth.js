@@ -10,10 +10,10 @@ export default function (ComposedComponent) {
         }
 
         componentWillMount() {
-                 
+
             if (!localStorage.getItem('token')) {
                 //this.props.routeActions.push('/foo'); push('/');
-                console.log(!localStorage.getItem('token'), !this.props.authenticated )
+                console.log(!localStorage.getItem('token'), !this.props.authenticated)
                 this.props.dispatch(push("/login"));
             }
         }
@@ -21,13 +21,13 @@ export default function (ComposedComponent) {
         componentWillUpdate(nextProps) {
             if (!localStorage.getItem('token')) {
                 //push('/');
-                console.log(!localStorage.getItem('token'), !nextProps.authenticated )
+                console.log(!localStorage.getItem('token'), !nextProps.authenticated)
                 this.props.dispatch(push("/login"));
             }
         }
 
         render() {
-            console.log('AUTORIZED',localStorage.getItem('token'), sessionStorage.getItem('token'))
+            console.log('AUTORIZED', localStorage.getItem('token'), sessionStorage.getItem('token'))
             return <ComposedComponent {...this.props} />
         }
     }

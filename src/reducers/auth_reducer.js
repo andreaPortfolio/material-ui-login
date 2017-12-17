@@ -1,8 +1,4 @@
-import {
-    AUTH_USER,
-    UNAUTH_USER,
-    AUTH_ERROR
-} from '../actions/types';
+import {AUTH_ERROR, AUTH_USER, UNAUTH_USER} from '../actions/types';
 
 export default function (state = {}, action) {
     switch (action.type) {
@@ -11,7 +7,7 @@ export default function (state = {}, action) {
         case UNAUTH_USER:
             return {...state, error: null, authenticated: false};
         case AUTH_ERROR:
-            return {...state, error: 'Invalid email or password. Please try again' };
+            return {...state, error: 'Invalid email or password. Please try again'};
 
     }
 
