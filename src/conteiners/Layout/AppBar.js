@@ -96,7 +96,6 @@ class TopBar extends Component {
                         <UserButton/>
                     </Toolbar>
 
-
                 </AppBar>
                 <SideBar {...this.state} handleDrawerClose={this.handleDrawerClose}/>
 

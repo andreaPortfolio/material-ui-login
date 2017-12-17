@@ -63,6 +63,7 @@ class UserButton extends Component {
 
     componentWillMount() {
         const profile = JSON.parse(localStorage.getItem('profile'));
+        console.log(profile)
 
         if (profile) {
             const {firstName, lastName, email} = profile;
