@@ -72,10 +72,8 @@ export function signoutUser() {
             axios.delete(`${ROOT_URL}/session/${decoded.sessionId}`, {
                 "hardDelete": true
             }).then(response => {
-                 localStorage.removeItem('token');
+                localStorage.removeItem('token');
                 localStorage.removeItem('profile');
-
-                console.log('delete')
                 dispatch({
                     type: UNAUTH_USER
                 });

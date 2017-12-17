@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
-import Input, {InputLabel} from 'material-ui/Input';
+import Input, {InputLabel, InputAdornment} from 'material-ui/Input';
 import {FormControl, FormHelperText} from 'material-ui/Form';
 import {CardContent} from 'material-ui/Card';
 import {reduxForm} from 'redux-form';
@@ -9,6 +9,10 @@ import * as actions from '../../actions';
 import {connect} from 'react-redux';
 import Button from 'material-ui/Button';
 import AccountCircle from 'material-ui-icons/AccountCircle';
+import Visibility from 'material-ui-icons/Visibility';
+import VisibilityOff from 'material-ui-icons/VisibilityOff';
+import IconButton from 'material-ui/IconButton';
+
 
 import {compose} from 'redux';
 
@@ -61,7 +65,8 @@ class SignIn extends React.Component {
         emailError: '',
         password: '',
         passwordError: '',
-        rememberMe: false
+        rememberMe: false,
+        showPassword: false,
     };
 
     handleChangeEmail = event => {
@@ -79,6 +84,9 @@ class SignIn extends React.Component {
     handleFormSubmit = event => {
         const {email, password, rememberMe} = this.state;
         this.props.signInUser({email, password, rememberMe});
+    };
+    handleClickShowPasssword = () => {
+        this.setState({ showPassword: !this.state.showPassword });
     };
 
     render() {
@@ -113,9 +121,20 @@ class SignIn extends React.Component {
                                 <InputLabel htmlFor="password">Password</InputLabel>
                                 <Input
                                     id="password"
+                                    type={this.state.showPassword ? 'text' : 'password'}
                                     className={classes.input}
                                     value={this.state.password}
                                     onChange={this.handleChangePassword}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                onClick={this.handleClickShowPasssword}
+                                                onMouseDown={this.handleMouseDownPassword}
+                                            >
+                                                {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
                                 />
 
                                 <FormHelperText error={true}>{this.state.passwordError}</FormHelperText>
