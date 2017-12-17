@@ -3,30 +3,35 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import {push} from 'react-router-redux';
 import {connect} from 'react-redux';
-import {
-  SortingState, EditingState, PagingState,
-  LocalPaging, LocalSorting,
-} from '@devexpress/dx-react-grid';
+
+import UserForm from './UserForm';
+
+
+import Table, {
+    TableBody,
+    TableCell,
+    TableFooter,
+    TableHead,
+    TablePagination,
+    TableRow,
+    TableSortLabel,
+} from 'material-ui/Table';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import Paper from 'material-ui/Paper';
+import Checkbox from 'material-ui/Checkbox';
+import IconButton from 'material-ui/IconButton';
+import Tooltip from 'material-ui/Tooltip';
+import FilterListIcon from 'material-ui-icons/FilterList';
 
 import {
-  TableCell,
-
-  Button,
-  IconButton,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  MenuItem,
-  Select,
-  Table
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
 } from 'material-ui';
-
-import {
-    Grid, TableHeaderRow, TableView,TableEditColumn,PagingPanel,
-} from '@devexpress/dx-react-grid-material-ui';
-
 
 import DeleteIcon from 'material-ui-icons/Delete';
 import EditIcon from 'material-ui-icons/Edit';
@@ -36,29 +41,34 @@ import { withStyles } from 'material-ui/styles';
 
 
 
+
 const styles = theme => ({
-  commandButton: {
-    minWidth: '40px',
-  },
-  lookupEditCell: {
-    verticalAlign: 'top',
-    paddingRight: theme.spacing.unit,
-    paddingTop: theme.spacing.unit * 1.25,
-    '& ~ $lookupEditCell': {
-      paddingLeft: theme.spacing.unit,
+    root: {
+        paddingRight: 2,
     },
-  },
-  dialog: {
-    width: 'calc(100% - 16px)',
-  },
-  inputRoot: {
-    width: '100%',
-  },
+    highlight:
+        theme.palette.type === 'light'
+            ? {
+                color: theme.palette.secondary.A700,
+                backgroundColor: theme.palette.secondary.A100,
+            }
+            : {
+                color: theme.palette.secondary.A100,
+                backgroundColor: theme.palette.secondary.A700,
+            },
+    spacer: {
+        flex: '1 1 100%',
+    },
+    actions: {
+        color: theme.palette.text.secondary,
+    },
+    title: {
+        flex: '0 0 auto',
+    }
 });
 
-
 const AddButton = ({ onExecute }) => (
-    <div style={{ textAlign: 'center' }}>
+
         <Button
             color="primary"
             onClick={onExecute}
@@ -66,7 +76,7 @@ const AddButton = ({ onExecute }) => (
         >
             New
         </Button>
-    </div>
+
 );
 AddButton.propTypes = {
     onExecute: PropTypes.func.isRequired,
@@ -82,7 +92,7 @@ EditButton.propTypes = {
 };
 
 const DeleteButton = ({ onExecute }) => (
-    <IconButton onClick={onExecute} title="Delete roe">
+    <IconButton onClick={onExecute} title="Delete row">
         <DeleteIcon />
     </IconButton>
 );
@@ -90,193 +100,257 @@ DeleteButton.propTypes = {
     onExecute: PropTypes.func.isRequired,
 };
 
-const CommitButton = ({ onExecute }) => (
-    <IconButton onClick={onExecute} title="Save changes">
-        <SaveIcon />
-    </IconButton>
-);
-CommitButton.propTypes = {
-    onExecute: PropTypes.func.isRequired,
-};
-
-const CancelButton = ({ onExecute }) => (
-    <IconButton color="accent" onClick={onExecute} title="Cancel changes">
-        <CancelIcon />
-    </IconButton>
-);
-CancelButton.propTypes = {
-    onExecute: PropTypes.func.isRequired,
-};
-
-//Buttons
-
-
-const commandComponents = {
-    add: AddButton,
-    edit: EditButton,
-    delete: DeleteButton,
-    commit: CommitButton,
-    cancel: CancelButton,
-};
-
-
-const Command = ({ id, onExecute }) => {
-    const CommandButton = commandComponents[id];
-    return (
-        <CommandButton
-            onExecute={onExecute}
-        />
-    );
-};
-Command.propTypes = {
-    id: PropTypes.string.isRequired,
-    onExecute: PropTypes.func.isRequired,
-};
-
-//////END BUTTON SECTION
 
 
 
 
 
-const getRowId = row => row.id;
+
 
 class Users extends React.PureComponent {
-  constructor(props) {
-      super(props);
+    constructor(props) {
+        super(props);
 
-      this.state = {
-          users: [],
-          pages: {current: 1, hasNext: false, hasPrev: false, next: 2, prev: 0, total: null},
-          columns: [
-              {name: 'firstName', title: 'Nome'},
-              {name: 'lastName', title: 'Cognome'},
-              {name: 'email', title: 'Email'},
-              {name: 'lastLogin', title: 'Lastest Login'}
-          ],
-          rows: [],
-          sorting: [],
-          editingRows: [],
-          addedRows: [],
-          changedRows: {},
-          currentPage: 0,
-          deletingRows: [],
-          pageSize: 0,
-          allowedPageSizes: [5, 10, 0],
-          columnOrder: ['firstName', 'lastName', 'email', 'lastLogin'],
-      };
-  }
-
-
-
+        this.state = {
+            users: [],
+            pages: {current: 1, hasNext: false, hasPrev: false, next: 2, prev: 0, total: 1},
+            columns: [
+                {name: 'firstName', title: 'Nome'},
+                {name: 'lastName', title: 'Cognome'},
+                {name: 'email', title: 'Email'},
+                {name: 'lastLogin', title: 'Lastest Login'}
+            ],
+            rows: [],
+            sorting: [],
+            editingRows: [],
+            addedRows: [],
+            changedRows: {},
+            currentPage: 0,
+            deletingRows: [],
+            currentUserData: {_id:"","firstName": '', "lastName": '', "email": '', 'password':''},
+            pageSize: 0,
+            allowedPageSizes: [5, 10, 15],
+            openDeleteDialog: false,
+            openEditDialog: false
+        };
 
 
-  componentDidMount() {
-
-      this.getUsers();
+    }
 
 
 
-  }
 
-  getUsers =() =>{
+    componentDidMount() {
 
-      axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
-
-      axios.get(`http://localhost:8000/user`).then(response =>{
-          console.log('response', response)
-          const users = response.data.docs;
-          const pages = response.data.pages;
-          this.setState({users})
-      }).catch((error ) => {
+        this.getUsers();
 
 
-          if (error.response.status === 401) {
-              //if request is unauthorized redirect to login page
-              this.props.dispatch(push("/login"));
-          }
-      });
-  }
 
-    commitChanges = ({ added, changed, deleted }) => {
-        let { rows } = this.state;
-        if (added) {
-            const startingAddedId = (rows.length - 1) > 0 ? rows[rows.length - 1].id + 1 : 0;
-            rows = [
-                ...rows,
-                ...added.map((row, index) => ({
-                    id: startingAddedId + index,
-                    ...row,
-                })),
-            ];
+    }
+
+    getUsers =() =>{
+
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
+
+        axios.get(`http://localhost:8000/user`).then(response =>{
+            console.log('response', response);
+            const users = response.data.docs;
+            const pages = response.data.pages;
+            console.log(pages)
+            this.setState({users})
+        }).catch((error ) => {
+
+
+            if (error.response && error.response.status === 401) {
+                //if request is unauthorized redirect to login page
+                this.props.dispatch(push("/login"));
+            }
+        });
+    };
+
+    deleteUser =() =>{
+
+        const {currentUserData} = this.state;
+
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
+
+        axios.delete(`http://localhost:8000/user/${currentUserData._id}`, {
+            "hardDelete": true
+        }).then(response =>{
+            console.log('response', response);
+            this.cancelDelete();
+            this.getUsers();
+        }).catch((error ) => {
+
+
+            if (error.response && error.response.status === 401) {
+                //if request is unauthorized redirect to login page
+                this.props.dispatch(push("/login"));
+            }
+        });
+    };
+
+    handleClickButtons = (type, data)=>{
+
+        if(type === 'delete'){
+            this.setState({openDeleteDialog: true, currentUserData: data});
         }
-        if (changed) {
-            rows = rows.map(row => (changed[row.id] ? { ...row, ...changed[row.id] } : row));
+        if(type === 'edit'){
+            this.setState({openEditDialog: true, currentUserData: data});
         }
-        this.setState({ rows, deletingRows: deleted || this.state.deletingRows });
+        if(type === 'new'){
+            this.setState({openEditDialog: true, currentUserData: {_id:"","firstName": '', "lastName": '', "email": '', 'password':''}});
+        }
+    };
+
+    cancelDelete = () => {
+
+        this.setState({openDeleteDialog: false, currentUserData: {_id:"","firstName": '', "lastName": '', "email": '', 'password':''}});
+
+    };
+
+    cancelEdit = () => {
+
+        this.setState({openEditDialog: false, currentUserData: {_id:"","firstName": '', "lastName": '', "email": '', 'password':''}});
+
     };
 
 
-  render() {
-    const {
-      classes,
-    } = this.props;
-    const {
-      users,
-      pages,
-      rows,
-      columns,
-      sorting,
-      editingRows,
-      addedRows,
-      changedRows,
-      currentPage,
-      deletingRows,
-      pageSize,
-      allowedPageSizes,
-      columnOrder,
-    } = this.state;
 
-    return (
-        <Grid
-            rows={users}
-            columns={columns}>
+    renderRowTable = (data) =>{
+
+        const id = data._id;
+        return(<TableRow
+            tabIndex={-1}
+            key={data._id}
+        >
+            <TableCell>
+                <EditButton onExecute={()=> {this.handleClickButtons('edit', data)}}/>
+                <DeleteButton onExecute={()=> { this.handleClickButtons('delete', data)}}/>
+            </TableCell>
+            <TableCell >{data.firstName}</TableCell>
+            <TableCell>{data.lastName}</TableCell>
+            <TableCell>{data.email}</TableCell>
+            <TableCell></TableCell>
+
+        </TableRow>)
+    };
+
+    renderRowHeader = (data, index) =>{
+        
+        return(<TableCell key={index+'-headerRow'}>{data.name}</TableCell>)
+    };
+
+    handleChangePage = (event, page) => {
+        this.setState({ page });
+    };
+
+    handleChangeRowsPerPage = event => {
+        this.setState({ rowsPerPage: event.target.value });
+    };
 
 
-            <PagingState
-                currentPage={pages.curent}
-                onCurrentPageChange={this.changeCurrentPage}
-                pageSize={10}
-                onPageSizeChange={this.changePageSize}
-            />
+    handleChangeUserForm = (event, type) =>{
+        const currentUserData = this.state;
 
-            <LocalPaging />
-            <TableView />
-            <EditingState
-                editingRows={editingRows}
-                onEditingRowsChange={this.changeEditingRows}
-                changedRows={changedRows}
-                onChangedRowsChange={this.changeChangedRows}
-                addedRows={addedRows}
-                onAddedRowsChange={this.changeAddedRows}
-                onCommitChanges={this.commitChanges}
-            />
-            <TableEditColumn
-                width={120}
-                allowAdding={!this.state.addedRows.length}
-                allowEditing
-                allowDeleting
-                commandComponent={Command}
-            />
-            <TableHeaderRow />
-            <PagingPanel />
-        </Grid>
-    );
-  }
+        if(type === 'firstName'){
+            currentUserData.firstName = event.target.value;
+
+            //this.setState({ currentUserData: { ...this.state.currentUserData } });
+        }
+        if(type === 'lastName'){
+            currentUserData.lastName = event.target.value;
+        }
+        if(type === 'email'){
+            currentUserData.email = event.target.value;
+        }
+
+        //this.setState({currentUserData});
+    }
+
+    render() {
+        const {
+            classes,
+        } = this.props;
+        const {
+            users,
+            rows,
+            pages,
+            columns,
+            sorting,
+            editingRows,
+            addedRows,
+            changedRows,
+            currentPage,
+            deletingRows,
+            pageSize,
+            allowedPageSizes,
+            columnOrder,
+            openDeleteDialog,
+            openEditDialog,
+            currentUserData
+        } = this.state;
+
+        return (<div>
+                <Paper className={classes.root}>
+                    <div className={classes.tableWrapper}>
+                        <Table className={classes.table}>
+
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell><AddButton onExecute={()=> { this.handleClickButtons('new')}}/></TableCell>
+                                    {columns.map(this.renderRowHeader)}
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {users.map(this.renderRowTable)}
+                            </TableBody>
+                            <TableFooter>
+                                <TableRow>
+                                    <TablePagination
+                                        count={pages.total || 1}
+                                        rowsPerPage={10}
+                                        rowsPerPageOptions={allowedPageSizes}
+                                        page={pages.current}
+                                        onChangePage={this.handleChangePage}
+                                        onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                                    />
+                                </TableRow>
+                            </TableFooter>
+                        </Table>
+                    </div>
+                </Paper>
+
+
+                <Dialog
+                    open={openDeleteDialog}
+                    onRequestClose={this.cancelDelete}
+                    classes={{ paper: classes.dialog }}
+                >
+                    <DialogTitle>Delete User</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            Are you sure to delete the following row?
+                        </DialogContentText>
+                        <Paper>
+
+                        </Paper>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.cancelDelete} color="primary">Cancel</Button>
+                        <Button onClick={this.deleteUser} color="accent">Delete</Button>
+                    </DialogActions>
+                </Dialog>
+            {openEditDialog && <UserForm {...this.state} cancelEdit={this.cancelEdit} getUsers={this.getUsers}/>}
+            </div>
+        );
+    }
 }
 
+
+
 Users.propTypes = {
-  classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
 };
 
 
