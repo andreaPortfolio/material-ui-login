@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import  jwtDecode from  'jwt-decode';
 import {push} from 'react-router-redux';
 import {AUTH_ERROR, AUTH_USER, UNAUTH_USER} from './types'
 
@@ -21,9 +21,6 @@ export function signInUser(fields) {
     return function (dispatch) {
 
         const {email, password, rememberMe} = fields;
-
-        console.log(email, password, rememberMe)
-
 
         let data = {
             "email": email,
@@ -65,14 +62,41 @@ export function signInUser(fields) {
 
 export function signoutUser() {
 
+    return function (dispatch) {
+        const token = localStorage.getItem('token');
+        if (token) {
 
-    if (localStorage.getItem('token')) {
-        localStorage.removeItem('token');
-        localStorage.removeItem('profile');
+            const decoded = jwtDecode(token);
+            axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
+
+            axios.delete(`${ROOT_URL}/session/${decoded.sessionId}`, {
+                "hardDelete": true
+            }).then(response => {
+                 localStorage.removeItem('token');
+                localStorage.removeItem('profile');
+
+                console.log('delete')
+                dispatch({
+                    type: UNAUTH_USER
+                });
+                dispatch(push("/"));
+
+            }).catch((error) => {
+
+
+                if (error.response && error.response.status === 401) {
+                    //if request is unauthorized redirect to login page
+                    dispatch(push("/login"));
+                }
+            });
+
+
+        }
+
     }
 
 
-    return {type: UNAUTH_USER}
+
 }
 
 

@@ -12,6 +12,7 @@ import * as actions from '../../actions/index';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 
+
 const styles = {
 
     flex: {
@@ -86,8 +87,6 @@ class UserButton extends Component {
 
     handleQuit = () => {
         this.props.signoutUser();
-        console.log('APPBAR', this.props)
-        this.props.history.push("/");
     };
 
     render() {
